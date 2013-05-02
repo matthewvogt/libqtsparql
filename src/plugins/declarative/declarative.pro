@@ -7,8 +7,14 @@ qmldir.files = $$PWD/qmldir
 qmldir.path = $$QTSPARQL_INSTALL_IMPORTS/QtSparql
 INSTALLS += qmldir
 
-copy2build.target = $$QTSPARQL_BUILD_TREE/imports/QtSparql/qmldir
-copy2build.commands = $$QMAKE_COPY $$PWD/qmldir $$QTSPARQL_BUILD_TREE/imports/QtSparql
+equals(QT_MAJOR_VERSION, 4) {
+    copy2build.target = $$QTSPARQL_BUILD_TREE/imports/QtSparql/qmldir
+    copy2build.commands = $$QMAKE_COPY $$PWD/qmldir $$QTSPARQL_BUILD_TREE/imports/QtSparql
+}
+equals(QT_MAJOR_VERSION, 5) {
+    copy2build.target = $$QTSPARQL_BUILD_TREE/qml/QtSparql/qmldir
+    copy2build.commands = $$QMAKE_COPY $$PWD/qmldir $$QTSPARQL_BUILD_TREE/qml/QtSparql
+}
 copy2build.depends = $$PWD/qmldir
 QMAKE_EXTRA_TARGETS += copy2build
 
